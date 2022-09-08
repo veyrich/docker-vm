@@ -1,0 +1,13 @@
+[Unit]
+ Description=custom-setup
+ ConditionPathExists=/etc/custom-setup.sh
+
+[Service]
+ Type=forking
+ ExecStart=/etc/custom-setup.sh start
+ TimeoutSec=0
+ StandardOutput=tty
+ RemainAfterExit=yes
+
+[Install]
+ WantedBy=multi-user.target

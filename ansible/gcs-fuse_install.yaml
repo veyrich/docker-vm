@@ -1,0 +1,26 @@
+- name: "install_gcs_fuse"
+  hosts: localhost
+  become: true
+  gather_facts: no
+
+  tasks:
+
+    - name: add_gcsfuse_repo
+      shell:
+        cmd: |
+            echo "deb http://packages.cloud.google.com/apt gcsfuse-$(lsb_release -c -s) main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
+
+    - name: get_google_cloud_repo_key
+      shell:
+        cmd: |
+            curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+    - name: apt_update
+      apt:
+        update_cache: true
+
+    - name: install_gcs_fuse
+      apt:
+        name: gcsfuse
+        state: latest
+

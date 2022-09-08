@@ -1,0 +1,39 @@
+- name: "base_os_install"
+  hosts: localhost
+  become: true
+  gather_facts: no
+
+  tasks:
+
+    - name: update_apt_cache
+      apt:
+        update_cache: true
+
+    - name: update_all
+      apt:
+        name: "*"
+        state: latest
+
+    - name: unattended_upgrades_present
+      apt:
+        name: unattended-upgrades
+        state: latest
+
+    - name: unattended_upgrades_enabled
+      systemd:
+        name: unattended-upgrades.service
+        daemon_reload: true
+        enabled: true
+        state: started
+
+    - name: required_os_modules
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop: [ "libuser" ]
+
+    - name: debug_modules
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop: [ "vim", "curl", "wget" ]

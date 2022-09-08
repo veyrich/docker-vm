@@ -1,0 +1,30 @@
+- name: "mount_gcs_buckets"
+  hosts: localhost
+  become: true
+  gather_facts: no
+
+  tasks:
+
+    - name: deploy_rc_local
+      copy:
+        src: scripts/custom-setup.sh
+        dest: /etc/custom-setup.sh
+        owner: root
+        group: root
+        mode: '0755'
+        
+
+    - name: deploy_custom_setup_unitfile
+      template:
+        src: templates/custom-setup.service
+        dest: /etc/systemd/system/custom-setup.service
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: custom_setup_enable
+      systemd:
+        name: custom-setup.service
+        state: restarted
+        enabled: yes
+        daemon_reload: yes
