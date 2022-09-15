@@ -18,6 +18,16 @@ variable "ubuntu_baseline_image" {
 	 default = "ubuntu-2004-focal-v20220905"
 }
 
+variable "network" {
+	 type = string
+	 default = "default"
+}
+
+variable "subnetwork" {
+	 type = string
+	 default = "default"
+}
+
 source "googlecompute" "dockervm" {
   project_id              = "${var.project_id}"
   image_description  = "Docker VM baseline"
