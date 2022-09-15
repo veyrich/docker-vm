@@ -31,6 +31,8 @@ source "googlecompute" "dockervm" {
   #config of the builder VM
   use_internal_ip         = "true"
   omit_external_ip        = "true"
+  network                 = "${var.network}"
+  subnetwork              = "${var.subnetwork}"
   use_os_login            = "true"
   metadata = {
     enable-oslogin = "TRUE"
