@@ -2,6 +2,12 @@
 
 #any one-shot custom setup required at startup
 
+#GCS buckets can also be mounted via the usual /etc/fstab mechanism, i.e.
+#
+# [bucket-name]        /bucket-mount-point gcsfuse rw,user,dir_mode
+#
+# details on options at: https://github.com/GoogleCloudPlatform/gcsfuse/blob/master/docs/mounting.md
+
 if [ ! -d /gcs/bucket-one ]
 then
    mkdir -p /gcs/bucket-one
