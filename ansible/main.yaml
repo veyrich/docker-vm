@@ -3,5 +3,5 @@
 - import_playbook: base-os.yaml
 - import_playbook: docker.yaml
 - import_playbook: gcs-fuse_install.yaml
-- import_playbook: mount-gcs-buckets.yaml
+- import_playbook: custom_setup.yaml
 

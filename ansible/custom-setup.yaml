@@ -1,4 +1,4 @@
-- name: "mount_gcs_buckets"
+- name: "custom_setup"
   hosts: localhost
   become: true
   gather_facts: no
