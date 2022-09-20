@@ -1,0 +1,18 @@
+- name: "mount_gcs_buckets"
+  hosts: localhost
+  become: true
+  gather_facts: no
+  vars_files:
+    - gcs-mount-points.yaml
+
+  tasks:
+
+#note that the regexp / replace logic is not particularly robust
+# since it keys off of the name of the source bucket
+   - name: update_fstab
+     lineinfile:
+       path: /etc/fstab
+       create: yes
+       regexp: "^{{ item.gcs_bucket }}"
+       line: "{{ item.gcs_bucket }} {{ item.local_mount_point }} gcsfuse {{ item.mount_options }}"
+     with_items: "{{ gcs_mounts }}"
