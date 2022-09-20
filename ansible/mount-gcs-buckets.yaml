@@ -9,8 +9,7 @@
 
    - name: create_mount_points
      file:
-       path: {{ item.local_mount_point }}
-       create: yes
+       path: "{{ item.local_mount_point }}"
        state: directory
        owner: root
        group: root
