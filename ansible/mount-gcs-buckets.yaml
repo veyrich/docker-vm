@@ -7,6 +7,16 @@
 
   tasks:
 
+   - name: create_mount_points
+     file:
+       path: {{ item.local_mount_point }}
+       create: yes
+       state: directory
+       owner: root
+       group: root
+       mode: 0755
+     with_items: "{{ gcs_mounts }}"
+
 #note that the regexp / replace logic is not particularly robust
 # since it keys off of the name of the source bucket
    - name: update_fstab
