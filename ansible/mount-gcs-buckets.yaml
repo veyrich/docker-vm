@@ -3,7 +3,7 @@
   become: true
   gather_facts: no
   vars_files:
-    - gcs-mount-points.yaml
+    - variables/gcs-mount-points.yaml
 
   tasks:
 
