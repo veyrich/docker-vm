@@ -1,0 +1,10 @@
+---
+
+#GCS buckets to mount (source, mount point, gcsfuse and standard mount options)
+gcs_mounts: [ { gcs_bucket: 'bucket-one',
+                local_mount_point: '/gcs/bucket-one',
+		mount_options: 'implicit_dirs,allow_other,dir_mode=777,file_mode=777,rw,user,x-systemd.requires=network-online.target' },
+              { gcs_bucket: 'bucket-two',
+	        local_mount_point: '/gcs/bucket-two',
+		mount_options: 'implicit_dirs,allow_other,dir_mode=777,file_mode=777,rw,user,x-systemd.requires=network-online.target' }
+	    ]
