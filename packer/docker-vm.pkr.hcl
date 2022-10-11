@@ -88,5 +88,10 @@ build {
     playbook_dir  = "../ansible"
     playbook_file = "../ansible/mount-gcs-buckets.yaml"
   }
+	
+  provisioner "ansible-local" {
+    playbook_dir  = "../ansible"
+    playbook_file = "../ansible/custom-setup.yaml"
+  }
 
 }
