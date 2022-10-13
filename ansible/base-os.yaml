@@ -31,6 +31,16 @@
         name: "{{ item }}"
         state: latest
       loop: [ "libuser" ]
+      
+    - name: download_ops_agent
+      get_url:
+        url: https://dl.google.com/cloudagents/add-google-cloud-ops-agent-repo.sh
+        dest: /tmp/add-google-cloud-ops-agent-repo.sh
+
+    - name: install_ops_agent
+      shell:
+        chdir: /tmp
+        cmd: /bin/bash /tmp/add-google-cloud-ops-agent-repo.sh --also-install
 
     - name: debug_modules
       apt:
